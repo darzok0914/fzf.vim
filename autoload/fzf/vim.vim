@@ -1088,7 +1088,7 @@ function! fzf#vim#marks(...)
   return s:fzf('marks', {
   \ 'source':  extend(newList[0:0], map(newList[1:], 's:format_mark(v:val)')),
   \ 'sink*':   s:function('s:mark_sink'),
-  \ 'options': '+m -x --ansi --tiebreak=index --header-lines 1 --tiebreak=begin --prompt "Marks> "'}, a:000)
+  \ 'options': '+m -x --ansi --tiebreak=index --header-lines 1 --tiebreak=begin --prompt "Favourites > "'}, a:000)
 endfunction
 
 " ------------------------------------------------------------------
