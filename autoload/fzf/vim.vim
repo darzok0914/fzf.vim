@@ -1060,6 +1060,10 @@ function! IsGlobalMarks(mark)
       return 1
   elseif(splitedStringMarkList[0] ==# 'L')
       return 1
+  elseif(splitedStringMarkList[0] ==# 'K')
+      return 1
+   elseif(splitedStringMarkList[0] ==# 'H')
+      return 1
   else
       return 0
   endif
