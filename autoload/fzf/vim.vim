@@ -1053,13 +1053,36 @@ function! s:mark_sink(lines)
   execute 'normal! `'.matchstr(a:lines[1], '\S').'zz'
 endfunction
 
+function! IsGlobalMarks(mark)
+  let splitedStringMarkList = split(a:mark, " ")
+  "==# is case-sensitive comparison
+  if(splitedStringMarkList[0] ==# 'M')
+      return 1
+  elseif(splitedStringMarkList[0] ==# 'L')
+      return 1
+  else
+      return 0
+  endif
+endfunction
+
 function! fzf#vim#marks(...)
   redir => cout
   silent marks
   redir END
+
   let list = split(cout, "\n")
+  let newList = [list[0]]
+
+  let c = 1
+  while c < len(list)
+      if(IsGlobalMarks(list[c]))
+          call add(newList, list[c])
+      endif
+      let c += 1
+  endwhile
+
   return s:fzf('marks', {
-  \ 'source':  extend(list[0:0], map(list[1:], 's:format_mark(v:val)')),
+  \ 'source':  extend(newList[0:0], map(newList[1:], 's:format_mark(v:val)')),
   \ 'sink*':   s:function('s:mark_sink'),
   \ 'options': '+m -x --ansi --tiebreak=index --header-lines 1 --tiebreak=begin --prompt "Marks> "'}, a:000)
 endfunction
