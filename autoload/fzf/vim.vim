@@ -1051,7 +1051,9 @@ function! s:mark_sink(lines)
     execute 'silent' cmd
   endif
   "execute 'normal! `'.matchstr(a:lines[1], '\S').'zz'
-  echom a:lines[1]
+  
+  let splitedStringMarkList = split(a:lines[1], " ")
+  echom splitedStringMarkList[0]
 endfunction
 
 function! IsGlobalMarks(mark)
