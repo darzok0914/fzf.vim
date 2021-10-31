@@ -1054,6 +1054,7 @@ function! s:mark_sink(lines)
   
   let splitedStringMarkList = split(a:lines[1], " ")
   echom splitedStringMarkList[0]
+  call feedkeys("'".splitedStringMarkList[0])
 endfunction
 
 function! IsGlobalMarks(mark)
