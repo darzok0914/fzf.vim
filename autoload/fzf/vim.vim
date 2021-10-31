@@ -1051,12 +1051,9 @@ function! s:mark_sink(lines)
   if !empty(cmd)
     execute 'silent' cmd
   endif
-  "execute 'normal! `'.matchstr(a:lines[1], '\S').'zz'
   
   let splitedStringMarkList = split(a:lines[1], " ")
-  echom splitedStringMarkList[0]
-  "call feedkeys("<C-\\><C-n>")
-  call feedkeys("\<Plug>(fzf-normal)")
+  call feedkeys("\<Plug>(fzf-normal)") "we have to use this when we are in terminal mode (to set the terminal in normal mode) otherwise it won't work
   call feedkeys("'".splitedStringMarkList[0])
 endfunction
 
