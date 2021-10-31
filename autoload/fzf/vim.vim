@@ -1042,6 +1042,8 @@ function! s:format_mark(line)
   return substitute(a:line, '\S', '\=s:yellow(submatch(0), "Number")', '')
 endfunction
 
+let g:mark = 0
+
 function! s:mark_sink(lines)
   if len(a:lines) < 2
     return
@@ -1055,7 +1057,8 @@ function! s:mark_sink(lines)
   let splitedStringMarkList = split(a:lines[1], " ")
   echom splitedStringMarkList[0]
   "call feedkeys("<C-\\><C-n>")
-  :execute feedkeys("'".splitedStringMarkList[0])
+  let g:mark = splitedStringMarkList[0]
+  ":execute feedkeys("'".splitedStringMarkList[0])
 endfunction
 
 function! IsGlobalMarks(mark)
