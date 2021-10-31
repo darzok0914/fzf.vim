@@ -1051,6 +1051,7 @@ function! s:mark_sink(lines)
     execute 'silent' cmd
   endif
   "execute 'normal! `'.matchstr(a:lines[1], '\S').'zz'
+  execute 'normal! `'.matchstr(a:lines[1], '\S')
 endfunction
 
 function! IsGlobalMarks(mark)
