@@ -1054,7 +1054,7 @@ function! s:mark_sink(lines)
   
   let splitedStringMarkList = split(a:lines[1], " ")
   echom splitedStringMarkList[0]
-  call feedkeys("<C-\\><C-n>", 't')
+  call feedkeys("<C-\\><C-n>")
   call feedkeys("'".splitedStringMarkList[0])
 endfunction
 
